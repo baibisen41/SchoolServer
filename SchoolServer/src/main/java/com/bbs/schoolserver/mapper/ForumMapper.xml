@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bbs.schoolserver.dao.IForumDao">
+    <resultMap id="BaseResultMap" type="com.bbs.schoolserver.model.Forum">
+        <id column="forumid" property="forumid" jdbcType="VARCHAR"/>
+        <result column="forumuserid" property="forumuserid" jdbcType="INTEGER"/>
+        <result column="forumusername" property="forumusername" jdbcType="VARCHAR"/>
+        <result column="forumtime" property="forumtime" jdbcType="INTEGER"/>
+        <result column="forumcontent" property="forumcontent" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="DetailResultMap" type="com.bbs.schoolserver.model.ForumDetail">
+        <id column="forumid" property="forumid" jdbcType="VARCHAR"/>
+        <result column="forumuserid" property="forumuserid" jdbcType="INTEGER"/>
+        <result column="forumusername" property="forumusername" jdbcType="VARCHAR"/>
+        <result column="forumtime" property="forumtime" jdbcType="INTEGER"/>
+        <result column="forumcontent" property="forumcontent" jdbcType="VARCHAR"/>
+        <result column="replyid" property="replyid" jdbcType="VARCHAR"/>
+        <result column="replytime" property="replytime" jdbcType="INTEGER"/>
+        <result column="replycontent" property="replycontent" jdbcType="VARCHAR"/>
+        <result column="replyuserid" property="replyuserid" jdbcType="INTEGER"/>
+        <result column="replyusername" property="replyusername" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        forumid, forumuserid, forumusername, forumtime,forumcontent
+    </sql>
+
+    <select id="getAllForum" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM forum_table
+    </select>
+
+    <select id="getForumDetail" resultMap="DetailResultMap">
+        SELECT
+	    forum_table.forumcontent,
+	    forum_table.forumusername,
+	    forum_table.forumtime,
+	    reply_table.replycontent,
+	    reply_table.replyusername,
+	    reply_table.replytime
+        FROM
+	    forum_table
+        LEFT JOIN forum_relation_table ON forum_table.forumid = forum_relation_table.forumid
+        LEFT JOIN reply_table ON forum_relation_table.replyid = reply_table.replyid
+        WHERE
+	    forum_table.forumid = #{forumid,jdbcType=INTEGER}
+
+    </select>
+
+</mapper>

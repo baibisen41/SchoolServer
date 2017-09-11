@@ -21,8 +21,8 @@ public class LoginIntercepter implements HandlerInterceptor {
             return true;
         }
         HttpSession session = httpServletRequest.getSession();
-        String name = (String) session.getAttribute("username");
-        if (!StringUtils.isEmpty(name) && name.equals("bbs")) {
+        String id = (String) session.getAttribute("userid");
+        if (!StringUtils.isEmpty(id) && id.equals("2013082401")) {
             return true;
         }
         System.out.println("拦截住了");

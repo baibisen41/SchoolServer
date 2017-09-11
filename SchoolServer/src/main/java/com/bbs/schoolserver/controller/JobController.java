@@ -35,7 +35,7 @@ public class JobController {
         modelMap.put("userid", user.getUserid());
         modelMap.put("username", user.getUsername());
         modelMap.put("password", user.getUserpassword());
-        return "joblist";
+        return "task_teacher";
     }
 
 }
