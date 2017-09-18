@@ -16,15 +16,14 @@
 <body>
 <table border="1">
 
+
     <c:forEach var="forumDetail" items="${forumDetailList}">
-        <c:if test="${forumDetail.replycontent == 'hihihi'}">
-            <tr>
-                <td>帖子:</td>
-                <td>${forumDetail.forumcontent}</td>
-                <td>${forumDetail.forumusername}</td>
-                <td>${forumDetail.forumtime}</td>
-            </tr>
-        </c:if>
+        <tr>
+            <td>帖子:</td>
+            <td>${forumDetail.forumcontent}</td>
+            <td>${forumDetail.forumusername}</td>
+            <td>${forumDetail.forumtime}</td>
+        </tr>
         <tr>
             <td>回复如下:</td>
             <td>${forumDetail.replycontent}</td>
@@ -34,5 +33,10 @@
     </c:forEach>
 
 </table>
+<form name="sendReplyForm" action="/SchoolServer/forum/sendReplyMessage.do" method="post">
+    <textarea name="replyContent" cols=40 rows=10 style="background-color:#40b2da"></textarea>
+    <input name="replyforumid" type="hidden" value="${forumId}"/>
+    <input name="sendReplyButton" type="submit" value="回复"/>
+</form>
 </body>
 </html>

@@ -6,15 +6,15 @@ package com.bbs.schoolserver.model;
 public class ForumDetail {
 
     private String forumid;
-    private int forumtime;
     private String forumcontent;
     private int forumuserid;
     private String forumusername;
+    private long forumtime;
     private String replyid;
-    private int replytime;
     private String replycontent;
     private int replyuserid;
     private String replyusername;
+    private long replytime;
 
     public String getForumid() {
         return forumid;
@@ -22,14 +22,6 @@ public class ForumDetail {
 
     public void setForumid(String forumid) {
         this.forumid = forumid;
-    }
-
-    public int getForumtime() {
-        return forumtime;
-    }
-
-    public void setForumtime(int forumtime) {
-        this.forumtime = forumtime;
     }
 
     public String getForumcontent() {
@@ -56,20 +48,20 @@ public class ForumDetail {
         this.forumusername = forumusername;
     }
 
+    public long getForumtime() {
+        return forumtime;
+    }
+
+    public void setForumtime(long forumtime) {
+        this.forumtime = forumtime;
+    }
+
     public String getReplyid() {
         return replyid;
     }
 
     public void setReplyid(String replyid) {
         this.replyid = replyid;
-    }
-
-    public int getReplytime() {
-        return replytime;
-    }
-
-    public void setReplytime(int replytime) {
-        this.replytime = replytime;
     }
 
     public String getReplycontent() {
@@ -94,5 +86,13 @@ public class ForumDetail {
 
     public void setReplyusername(String replyusername) {
         this.replyusername = replyusername;
+    }
+
+    public long getReplytime() {
+        return replytime;
+    }
+
+    public void setReplytime(long replytime) {
+        this.replytime = replytime;
     }
 }

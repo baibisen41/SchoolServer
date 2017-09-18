@@ -13,6 +13,9 @@
     <title>问题列表</title>
 </head>
 <body>
+<form name="sendForum" method="post" action="/SchoolServer/forum/forwardForumMessage.do">
+    <input name="sendForumButton" type="submit" value="发帖"/>
+</form>
 
 <table border="1">
 
@@ -27,7 +30,7 @@
             <td>${forum.forumcontent}</td>
             <td>
                 <form id="forumid" action="/SchoolServer/forum/showForumDetail.do" method="post">
-                    <input name="forum_detail_hidden" type="hidden" value="${forum.forumid}"/>
+                    <input name="forum_detail_id" type="hidden" value="${forum.forumid}"/>
                     <input name="forum_detail_button" type="submit" value="查看详情"/>
                 </form>
 

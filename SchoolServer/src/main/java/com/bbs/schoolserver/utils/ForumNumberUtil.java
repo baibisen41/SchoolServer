@@ -11,10 +11,8 @@ import java.util.Random;
  */
 public class ForumNumberUtil {
 
-
     //帖子编号格式 ---> 0/1 + 20170910 + 10000
-    public String getForumNumberHandler(int userFlag) {
-        String forumNumber = "10000000000001";
+    public static String getForumNumberHandler(int userFlag) {
 
         //获取用户类型
         String strUserFlag = String.valueOf(userFlag);
@@ -27,6 +25,6 @@ public class ForumNumberUtil {
         String strForumNumber = strUserFlag + strDate + strNumber;
         System.out.println(strForumNumber);
 
-        return forumNumber;
+        return strForumNumber;
     }
 }

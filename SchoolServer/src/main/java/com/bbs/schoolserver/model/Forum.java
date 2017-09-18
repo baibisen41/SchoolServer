@@ -8,7 +8,7 @@ public class Forum {
     private String forumid;
     private int forumuserid;
     private String forumusername;
-    private int forumtime;
+    private long forumtime;
     private String forumcontent;
 
     public String getForumid() {
@@ -35,11 +35,11 @@ public class Forum {
         this.forumusername = forumusername;
     }
 
-    public int getForumtime() {
+    public long getForumtime() {
         return forumtime;
     }
 
-    public void setForumtime(int forumtime) {
+    public void setForumtime(long forumtime) {
         this.forumtime = forumtime;
     }
 

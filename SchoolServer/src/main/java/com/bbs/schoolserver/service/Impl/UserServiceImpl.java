@@ -1,7 +1,8 @@
-package com.bbs.schoolserver.service;
+package com.bbs.schoolserver.service.Impl;
 
 import com.bbs.schoolserver.dao.IUserDao;
 import com.bbs.schoolserver.model.User;
+import com.bbs.schoolserver.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

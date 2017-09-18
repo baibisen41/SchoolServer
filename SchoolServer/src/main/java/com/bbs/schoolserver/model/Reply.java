@@ -6,10 +6,19 @@ package com.bbs.schoolserver.model;
 public class Reply {
 
     private String replyid;
+    private String replyforumid;
     private int replyuserid;
     private String replyusername;
-    private int replytime;
+    private long replytime;
     private String replycontent;
+
+    public String getReplyforumid() {
+        return replyforumid;
+    }
+
+    public void setReplyforumid(String replyforumid) {
+        this.replyforumid = replyforumid;
+    }
 
     public String getReplyid() {
         return replyid;
@@ -35,11 +44,11 @@ public class Reply {
         this.replyusername = replyusername;
     }
 
-    public int getReplytime() {
+    public long getReplytime() {
         return replytime;
     }
 
-    public void setReplytime(int replytime) {
+    public void setReplytime(long replytime) {
         this.replytime = replytime;
     }
 

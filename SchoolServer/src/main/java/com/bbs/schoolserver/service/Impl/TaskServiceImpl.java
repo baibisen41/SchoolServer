@@ -1,8 +1,9 @@
-package com.bbs.schoolserver.service;
+package com.bbs.schoolserver.service.Impl;
 
 import com.bbs.schoolserver.dao.ITaskDao;
 import com.bbs.schoolserver.model.Task;
 import com.bbs.schoolserver.model.Task_Teacher;
+import com.bbs.schoolserver.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by 大森 on 2017/9/4.
  */
 @Service
-public class TaskService implements ITaskService {
+public class TaskServiceImpl implements ITaskService {
 
     @Autowired
     private ITaskDao taskDao;
