@@ -21,7 +21,6 @@
 
 
     <c:forEach var="forum" items="${forumlist}">
-        <br>
         <tr>
             <td>${forum.forumid}</td>
             <td>${forum.forumuserid}</td>

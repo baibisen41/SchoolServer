@@ -6,7 +6,7 @@ package com.bbs.schoolserver.model;
 public class Task {
 
     private int userid;
-    private int tasktime;
+    private long tasktime;
     private String taskcontent;
     private int taskstatus;
 
@@ -18,11 +18,11 @@ public class Task {
         this.userid = userid;
     }
 
-    public int getTasktime() {
+    public long getTasktime() {
         return tasktime;
     }
 
-    public void setTasktime(int tasktime) {
+    public void setTasktime(long tasktime) {
         this.tasktime = tasktime;
     }
 
@@ -40,5 +40,23 @@ public class Task {
 
     public void setTaskstatus(int taskstatus) {
         this.taskstatus = taskstatus;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 37 * result + (int) tasktime;
+        result = 37 * result + taskcontent.hashCode();
+        result = 37 * result + taskstatus;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Task)) {
+            return false;
+        }
+        Task task = (Task) obj;
+        return this.taskcontent.equals(task.taskcontent);
     }
 }

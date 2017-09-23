@@ -6,7 +6,7 @@ package com.bbs.schoolserver.model;
 public class Task_Teacher {
     private int userid;
     private String username;
-    private int tasktime;
+    private long tasktime;
     private String taskcontent;
     private int taskstatus;
 
@@ -26,11 +26,11 @@ public class Task_Teacher {
         this.username = username;
     }
 
-    public int getTasktime() {
+    public long getTasktime() {
         return tasktime;
     }
 
-    public void setTasktime(int tasktime) {
+    public void setTasktime(long tasktime) {
         this.tasktime = tasktime;
     }
 

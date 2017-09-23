@@ -3,14 +3,14 @@
 <mapper namespace="com.bbs.schoolserver.dao.ITaskDao">
     <resultMap id="BaseResultMap" type="com.bbs.schoolserver.model.Task">
         <id column="userid" property="userid" jdbcType="INTEGER"/>
-        <result column="tasktime" property="tasktime" jdbcType="INTEGER"/>
+        <result column="tasktime" property="tasktime" jdbcType="BIGINT"/>
         <result column="taskcontent" property="taskcontent" jdbcType="VARCHAR"/>
         <result column="taskstatus" property="taskstatus" jdbcType="INTEGER"/>
     </resultMap>
     <resultMap id="TaskResultMap" type="com.bbs.schoolserver.model.Task_Teacher">
         <id column="userid" property="userid" jdbcType="INTEGER"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
-        <result column="tasktime" property="tasktime" jdbcType="INTEGER"/>
+        <result column="tasktime" property="tasktime" jdbcType="BIGINT"/>
         <result column="taskcontent" property="taskcontent" jdbcType="VARCHAR"/>
         <result column="taskstatus" property="taskstatus" jdbcType="INTEGER"/>
     </resultMap>
@@ -35,9 +35,8 @@
     <!--下达任务-->
     <update id="writeTask" parameterType="com.bbs.schoolserver.model.Task">
         UPDATE task_table
-       SET taskcontent = #{taskcontent,jdbcType=VARCHAR}
+       SET taskcontent = #{taskcontent,jdbcType=VARCHAR},tasktime = #{tasktime,jdbcType=BIGINT}
         WHERE userid = #{userid,jdbcType=INTEGER}
     </update>
-
 
 </mapper>

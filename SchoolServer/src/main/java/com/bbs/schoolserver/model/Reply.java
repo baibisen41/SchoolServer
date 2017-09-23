@@ -59,4 +59,22 @@ public class Reply {
     public void setReplycontent(String replycontent) {
         this.replycontent = replycontent;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 37 * result + replyid.hashCode();
+        result = 37 * result + (int) replytime;
+        result = 37 * result + replycontent.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Reply)) {
+            return false;
+        }
+        Reply reply = (Reply) obj;
+        return this.replyid.equals(reply.replyid);
+    }
 }

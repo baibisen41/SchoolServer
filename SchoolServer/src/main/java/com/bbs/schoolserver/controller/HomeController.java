@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/mvc")
 public class HomeController {
 
-    ForumNumberUtil forumNumberUtil = new ForumNumberUtil();
 
     @RequestMapping(value = "/home.do", method = RequestMethod.GET)
     public String showPage() {
@@ -29,7 +28,6 @@ public class HomeController {
         String pwd = request.getParameter("password");
         int flag = BaseConstant.TEACHER_STATUS;
         if (id.equals("2013082401") && pwd.equals("123")) {
-    //        forumNumberUtil.getForumNumberHandler(flag);
             session.setAttribute("userid", id);
             session.setAttribute("userflag", flag);
             //    return "redirect:/task/showTaskMessage.do";

@@ -14,13 +14,7 @@
 
     <mvc:annotation-driven/>
 
-<!--    &lt;!&ndash; 静态资源解析，包括js,css,img... &ndash;&gt;
-    <mvc:resources location="WEB-INF/jsp/Css" mapping="/css/**"/>
-    <mvc:resources location="WEB-INF/jsp/Images/" mapping="/images/**"/>
-    <mvc:resources location="WEB-INF/jsp/Js" mapping="/js/**"/>-->
-
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>

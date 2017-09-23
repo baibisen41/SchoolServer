@@ -50,4 +50,22 @@ public class Forum {
     public void setForumcontent(String forumcontent) {
         this.forumcontent = forumcontent;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 37 * result + forumid.hashCode();
+        result = 37 * result + (int) forumtime;
+        result = 37 * result + forumcontent.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Forum)) {
+            return false;
+        }
+        Forum forum = (Forum) obj;
+        return this.forumid.equals(forum.forumid);
+    }
 }

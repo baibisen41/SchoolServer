@@ -4,6 +4,7 @@ import com.bbs.schoolserver.common.BaseConstant;
 import com.bbs.schoolserver.model.Task;
 import com.bbs.schoolserver.model.Task_Teacher;
 import com.bbs.schoolserver.service.ITaskService;
+import com.bbs.schoolserver.utils.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,6 +62,8 @@ public class TaskController {
         System.out.println(taskContent);
         if (!StringUtils.isEmpty(taskContent)) {
             task.setUserid(userid);
+            task.setTasktime(DateTimeUtil.toDateHandler());
+            System.out.println(DateTimeUtil.toDateHandler());
             task.setTaskcontent(taskContent);
             finish = taskService.writeTask(task);
         }
