@@ -1,9 +1,7 @@
 com\bbs\schoolserver\intercepter\LoginIntercepter.class
+com\bbs\schoolserver\controller\JobController.class
+com\bbs\schoolserver\controller\HomeController.class
+com\bbs\schoolserver\dao\IUserDao.class
 com\bbs\schoolserver\service\IUserService.class
 com\bbs\schoolserver\model\User.class
-com\bbs\schoolserver\controller\HomeController.class
 com\bbs\schoolserver\utils\JsonHelper.class
-com\bbs\schoolserver\common\BaseController.class
-com\bbs\schoolserver\dao\IUserDao.class
-com\bbs\schoolserver\controller\JobController.class
-com\bbs\schoolserver\service\UserServiceImpl.class
