@@ -46,8 +46,9 @@ public class TaskController {
             modelAndView.setViewName("task_teacher");
         } else if (userflag == BaseConstant.STUDENT_STATUS) {
             task = taskService.readTask(userid);
-            modelAndView.addObject("userid", task.getUserid());
-            modelAndView.addObject("myTask", task.getTaskcontent());
+            modelAndView.addObject("taskContent", task.getTaskcontent());
+            modelAndView.addObject("taskTime", task.getTasktime());
+            modelAndView.addObject("taskStatus", task.getTaskstatus());
             modelAndView.setViewName("task_student");
         }
         return modelAndView;

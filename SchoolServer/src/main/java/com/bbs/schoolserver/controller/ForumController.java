@@ -7,21 +7,18 @@ import com.bbs.schoolserver.model.Reply;
 import com.bbs.schoolserver.service.IForumService;
 import com.bbs.schoolserver.utils.DateTimeUtil;
 import com.bbs.schoolserver.utils.ForumNumberUtil;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by 大森 on 2017/9/10.
@@ -30,20 +27,38 @@ import java.util.Map;
 @RequestMapping("/forum")
 public class ForumController {
 
+    private static final Logger logger = Logger.getLogger(ForumController.class);
+
+
     @Autowired
     private IForumService forumService;
 
+    //问题列表
     @RequestMapping("/showForumList.do")
     public ModelAndView showForumList() {
         ModelAndView modelAndView = new ModelAndView();
         Forum forum = new Forum();
         List<Forum> forumList = forumService.getAllForum();
-        modelAndView.addObject("forum", forum);
+//        modelAndView.addObject("forum", forum);
         modelAndView.addObject("forumlist", forumList);
         modelAndView.setViewName("forum_list");
         return modelAndView;
     }
 
+    //帖子中转
+    @RequestMapping(value = "/redirectForumDetail.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> redirectForumDetail(@RequestParam String forum_detail_id) {
+        logger.info("中转帖子id:" + forum_detail_id);
+        Map<String, Object> map = new HashMap<>();
+        if (!StringUtils.isEmpty(forum_detail_id)) {
+            map.put("msg", "showForumDetail.do");
+            logger.info("中转帖子id不为空！");
+        }
+        return map;
+    }
+
+    //帖子详情
     @RequestMapping("/showForumDetail.do")
     public ModelAndView showForumDetail(@RequestParam String forum_detail_id) {
         ModelAndView modelAndView = new ModelAndView();
@@ -55,8 +70,14 @@ public class ForumController {
             System.out.println("帖子数量为：" + forumDetailList.size());
             System.out.println("帖子内容为：" + forumDetailList.get(0).getForumcontent());
 
-            modelAndView.addObject("forumId", forum_detail_id);
-            modelAndView.addObject("forumDetail", forumDetail);
+            String userName = forumDetailList.get(0).getForumusername();
+            long forumTime = forumDetailList.get(0).getForumtime();
+            logger.info(forumTime);
+            String forumContent = forumDetailList.get(0).getForumcontent();
+            logger.info(forumContent);
+            modelAndView.addObject("userName", userName);
+            modelAndView.addObject("forumTime", forumTime);
+            modelAndView.addObject("forumContent", forumContent);
             modelAndView.addObject("forumDetailList", forumDetailList);
         }
         modelAndView.setViewName("forum_detail");

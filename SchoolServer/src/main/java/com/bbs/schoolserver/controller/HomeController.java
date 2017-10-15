@@ -30,11 +30,10 @@ public class HomeController {
         logger.info(System.currentTimeMillis());
         String id = request.getParameter("id");
         String pwd = request.getParameter("password");
-        int flag = BaseConstant.TEACHER_STATUS;
+        int flag = BaseConstant.STUDENT_STATUS;
         if (id.equals("2013082401") && pwd.equals("123")) {
             session.setAttribute("userid", id);
             session.setAttribute("userflag", flag);
-            //    return "redirect:/task/showTaskMessage.do";
             logger.info(System.currentTimeMillis());
             return "selectPage";
         }
