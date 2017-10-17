@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../Js/haidao.offcial.general.js"></script>
     <script type="text/javascript" src="../Js/select.js"></script>
     <script type="text/javascript" src="../Js/haidao.validate.js"></script>
+    <script type="text/javascript" src="../Js/now.js"></script>
 </head>
 
 <body>
@@ -89,18 +90,18 @@
                 <div class="sidebar-title">
                     <a href="#">
                         <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                        <span class="text-normal">产品与服务</span>
+                        <span class="text-normal">技术交流</span>
                     </a>
                 </div>
                 <ul class="sidebar-trans">
                     <li>
-                        <a href="task_teacher.jsp">
+                        <a href="javascript:void(0)" onclick="sideOnClick(1)">
                             <b class="sidebar-icon"><img src="../Images/icon_author.png" width="16" height="16"/></b>
-                            <span class="text-normal">任务管理</span>
+                            <span class="text-normal">用户信息</span>
                         </a>
                     </li>
                     <li>
-                        <a href="forum_list.jsp">
+                        <a href="javascript:void(0)" onclick="sideOnClick(2)">
                             <b class="sidebar-icon"><img src="../Images/icon_message.png" width="16" height="16"/></b>
                             <span class="text-normal">技术论坛</span>
                         </a>
@@ -117,39 +118,39 @@
                 <div class="sidebar-title">
                     <a href="#">
                         <span class="icon"><b class="fl icon-arrow-down"></b></span>
-                        <span class="text-normal">用户中心</span>
+                        <span class="text-normal">管理中心</span>
                     </a>
                 </div>
                 <ul class="sidebar-trans">
                     <li>
-                        <a href="../show_user_information.jsp">
+                        <a href="javascript:void(0)" onclick="sideOnClick(3)">
                             <b class="sidebar-icon"><img src="../Images/icon_cost.png" width="16" height="16"/></b>
-                            <span class="text-normal">用户信息</span>
+                            <span class="text-normal">任务管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../identify.html">
+                        <a href="javascript:void(0)" onclick="sideOnClick(4)">
                             <b class="sidebar-icon"><img src="../Images/icon_authentication.png" width="16"
                                                          height="16"/></b>
                             <span class="text-normal">图书管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../message.html">
+                        <a href="javascript:void(0)" onclick="sideOnClick(5)">
                             <b class="sidebar-icon"><img src="../Images/icon_news.png" width="16" height="16"/></b>
+                            <span class="text-normal">云平台</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="sideOnClick(6)">
+                            <b class="sidebar-icon"><img src="../Images/icon_gold.png" width="16" height="16"/></b>
                             <span class="text-normal">失物招领</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../money.html">
-                            <b class="sidebar-icon"><img src="../Images/icon_gold.png" width="16" height="16"/></b>
-                            <span class="text-normal">金币管理</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../order.html">
+                        <a href="javascript:void(0)" onclick="sideOnClick(7)">
                             <b class="sidebar-icon"><img src="../Images/icon_order.png" width="16" height="16"/></b>
-                            <span class="text-normal">订单管理</span>
+                            <span class="text-normal">问题反馈</span>
                         </a>
                     </li>
                 </ul>
@@ -203,7 +204,7 @@
             </div>
             <div class="table-margin" style="float:right">
                 <input name="submit_reply_button" type="button" value="我的回答"
-                       class="submit text-big " onclick=""/>
+                       class="submit text-big " onclick="submitReply('${forumId}')"/>
             </div>
         </div>
 
@@ -225,6 +226,24 @@
         }
     });
 
+    /*我的回帖*/
+    function submitReply(id) {
+        var message = $("#submit_reply").val();
+
+        $.ajax({
+            url: "sendReplyMessage.do",
+            type: "POST",
+            data: {"replyContent": message, "replyforumid": id},
+            dataType: "json",
+            success: function (data) {
+                window.location.href = data.forum_view + "?forum_detail_id=" + data.forum_id;
+                alert("回复成功")
+            },
+            error: function (data) {
+                alert("error:" + data.forum_id);
+            }
+        });
+    }
 
 </script>
 </body>

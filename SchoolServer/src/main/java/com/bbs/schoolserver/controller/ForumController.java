@@ -71,11 +71,13 @@ public class ForumController {
             System.out.println("帖子内容为：" + forumDetailList.get(0).getForumcontent());
 
             String userName = forumDetailList.get(0).getForumusername();
+            String forumId = forumDetailList.get(0).getForumid();
             long forumTime = forumDetailList.get(0).getForumtime();
             logger.info(forumTime);
             String forumContent = forumDetailList.get(0).getForumcontent();
             logger.info(forumContent);
             modelAndView.addObject("userName", userName);
+            modelAndView.addObject("forumId", forumId);
             modelAndView.addObject("forumTime", forumTime);
             modelAndView.addObject("forumContent", forumContent);
             modelAndView.addObject("forumDetailList", forumDetailList);
@@ -120,14 +122,14 @@ public class ForumController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/sendReplyMessage.do", method = RequestMethod.POST)
-    public ModelAndView sendReplyMessage(@RequestParam String replyContent, @RequestParam String replyforumid, HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView();
+    @RequestMapping("/sendReplyMessage.do")
+    @ResponseBody
+    public Map<String, Object> sendReplyMessage(@RequestParam String replyContent, @RequestParam String replyforumid, HttpSession session) {
+        Map<String, Object> map = new HashMap<>();
         Reply reply = new Reply();
-        System.out.println(replyContent);
+        logger.info("回帖id:" + replyforumid + "; 回帖内容:" + replyContent);
         String strUserId = session.getAttribute("userid").toString();
-        System.out.println(strUserId);
-        System.out.println(replyforumid);
+        logger.info("回帖人Id:" + strUserId);
 
         if (!StringUtils.isEmpty(replyContent) && !StringUtils.isEmpty(replyforumid)) {
             reply.setReplyid(ForumNumberUtil.getForumNumberHandler(BaseConstant.REPLY_FLAG));
@@ -135,19 +137,20 @@ public class ForumController {
             reply.setReplycontent(replyContent);
             reply.setReplyuserid(Integer.parseInt(strUserId));
             reply.setReplytime(DateTimeUtil.toDateHandler());
-            reply.setReplyusername("lihangjiong");
+            /////此处回帖人名字先用学号代替，后期修改
+            reply.setReplyusername(strUserId);
 
             Map<String, Object> getResult = forumService.sendReplyMessage(reply);
             int resultCode = Integer.parseInt(getResult.get("resultCode").toString());
-            System.out.println("回帖返回码" + String.valueOf(resultCode));
+            logger.info("回帖返回码" + String.valueOf(resultCode));
             if (resultCode == 500) {
                 String errorMessage = getResult.get("resultMessage").toString();
-                System.out.println(errorMessage);
+                logger.error("回帖错误码：" + errorMessage);
             }
-            modelAndView.addObject("forum_detail_id", replyforumid);
+            map.put("forum_id", replyforumid);
         }
-        modelAndView.setViewName("redirect:/forum/showForumDetail.do");
-        return modelAndView;
+        map.put("forum_view", "showForumDetail.do");
+        return map;
     }
 
 }

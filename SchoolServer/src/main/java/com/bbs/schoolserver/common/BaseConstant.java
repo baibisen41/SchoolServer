@@ -14,7 +14,7 @@ public interface BaseConstant {
 
     //论坛标识
     public int FORUM_FLAG = 10;
-    
+
     public int REPLY_FLAG = 11;
 
     //返回状态码
